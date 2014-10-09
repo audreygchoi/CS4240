@@ -1,0 +1,39 @@
+Inductive list (A: Type): Type  :=
+ |nil: list A
+ |cons: A -> list A -> list A
+.
+
+Inductive bool: Set :=
+| true
+| false
+.
+
+Inductive nat: Set :=
+| O: nat
+| S: nat -> nat
+.
+
+
+Definition n0 := O.
+Definition n1 := (S O).
+Definition n1' := (S n0).
+Definition n2 := (S n1).
+
+Fixpoint plus (n1 n2: nat): nat :=
+match n1 with
+  |O => n2
+  |S n1' => S (plus n1' n2)
+end.
+
+Fixpoint length (A: Type) (l: list A): nat :=
+match l with
+  |nil => O
+  |cons h t => S (length A  t)
+end.
+
+Definition l0: list nat := nil nat.
+Definition l1: list nat := cons nat (S O) (nil nat).
+Definition l2:= cons nat (S (S O)) (cons nat (S O) (nil nat)).
+Definition l2' := cons nat (S (S O)) l1.
+
+Compute rl

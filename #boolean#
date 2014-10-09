@@ -1,0 +1,188 @@
+Inductive bool: Set :=
+|true: bool
+|false : bool
+.
+
+(*
+And returns true only if both inputs are true. 
+*)
+
+
+
+(* ---------Unary Functions -------------*)
+
+
+Definition not (b: bool): bool :=
+match b with
+| true => false
+| false => true
+end.
+
+Definition identity (b: bool): bool :=
+match b with
+| true => true
+| false => false
+end.
+
+Definition to_False (b:bool): bool :=
+match b with
+| _ => false
+end.
+
+Definition to_True (b:bool): bool :=
+match b with 
+| _ => true
+end.
+
+
+
+(* -------- Proofs of Unary Functions ------------ *)
+
+
+Example testNot: not false = true.
+Proof.
+compute.
+reflexivity.
+Qed.
+
+
+Example testID: identity true = true.
+Proof.
+compute.
+reflexivity.
+Qed.
+
+Example testFalse: to_False true = false.
+Proof.
+compute.
+reflexivity.
+Qed.
+
+Example testTrue: to_True false = true.
+Proof.
+compute.
+reflexivity.
+Qed.
+
+
+(* ---------------Binary Functions -----------------*)
+
+
+Definition and (b1: bool)(b2: bool) : bool :=
+match b1, b2 with
+|true, true => true
+|_, _ => false
+end.
+
+(*
+Or returns false only if both inputs are false.
+*)
+
+Definition or (b1: bool)(b2: bool) : bool :=
+match b1, b2 with
+|true, _ => true
+|_, true => true
+|_, _ => false
+end.
+
+
+(*
+Xor returns false if the two inputs are the same.
+*)
+
+Definition xor (b1: bool)(b2: bool) : bool :=
+match b1, b2 with
+|true, true => false
+|false, false => false
+|_, _ => true
+end.
+
+(* 
+Nand, returns the negation of what the and function returns for the same inputs.
+*)
+
+
+Definition nand (b1: bool)(b2: bool) : bool :=
+match b1, b2 with
+|true, true => false
+|_, _ => true
+end.
+
+(* -------- Proofs of Binary Functions ------------ *)
+
+(*Test Or*)
+
+Example testOr1: or true true = true.
+Proof.
+compute.
+reflexivity.
+Qed.
+
+Example testOr2: or true false = true.
+Proof.
+compute.
+reflexivity.
+Qed.
+
+Example testOr3: or false false = false.
+Proof.
+compute.
+reflexivity.
+Qed.
+
+Example testOr4: or false true = true.
+Proof.
+compute.
+reflexivity.
+Qed.
+
+(*Test And*)
+Example testAnd1: and true true = true.
+Proof.
+compute.
+reflexivity.
+Qed.
+
+Example testAnd2: and true false = false.
+Proof.
+compute.
+reflexivity.
+Qed.
+
+Example testAnd3: and false false = false.
+Proof.
+compute.
+reflexivity.
+Qed.
+
+Example testAnd4: and false true = false.
+Proof.
+compute.
+reflexivity.
+Qed.
+
+(*Test Xor*)
+
+Example testXor1: xor true true = false.
+Proof.
+compute.
+reflexivity.
+Qed.
+
+Example testXor2: xor true false = false.
+Proof.
+compute.
+reflexivity.
+Qed.
+
+Example testXor3: xor false false = true.
+Proof.
+compute.
+reflexivity.
+Qed.
+
+Example testXor4: xor false true = false.
+Proof.
+compute.
+reflexivity.
+Qed.

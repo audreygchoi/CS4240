@@ -1,0 +1,34 @@
+Inductive mark: Set :=
+|B: mark
+|O: mark
+|X: mark
+.
+
+Inductive cell: Set:=
+|C1: cell
+|C2: cell
+|C3: cell
+|C4: cell
+|C5: cell
+|C6: cell
+|C7: cell
+|c8: cell
+|c9: cell
+.
+
+Inductive list (T: Set): Set :=
+|nil: list T
+|cons: T -> list T -> list T
+.
+
+
+Inductive board: Set :=
+|makeboard: mark -> mark -> mark ->
+            mark -> mark -> mark ->
+            mark -> mark -> mark -> board
+.
+
+Inductive bool: Set :=
+|true: bool
+|false : bool
+.
